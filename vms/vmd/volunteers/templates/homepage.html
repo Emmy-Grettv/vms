@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Link to the external static CSS file -->
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+</head>
+<body>
+    <h1>Welcome to the Volunteer Management System</h1>
+    <p>Thank you for taking the decision of volunteering to help the society.</p>
+    <a href="{% url 'events:category_list' %}">Go to Events</a> <!-- Corrected link using the app name -->
+</body>
+</html>

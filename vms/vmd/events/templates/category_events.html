@@ -1,0 +1,160 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<style>
+  /* Page Styling */
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
+  }
+
+  /* Page Header */
+  h2 {
+      text-align: center;
+      color: #007BFF;
+      font-size: 2em;
+      margin-bottom: 20px;
+  }
+
+  /* Add Event Button */
+  a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      margin: 10px 0;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+  }
+
+  /* Event Table Styling */
+  table {
+      width: 100%; /* Table will take full width */
+      margin: 20px auto; /* Center the table */
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th, table td {
+      text-align: left;
+      padding: 16px 24px; /* Increased padding for more space */
+      border-bottom: 1px solid #ddd;
+  }
+
+  table th {
+      background-color: #007BFF;
+      color: white;
+      font-weight: bold;
+  }
+
+  table tr:hover {
+      background-color: #f1f1f1;
+  }
+
+  /* Action Links */
+  td a {
+      display: inline-block;
+      padding: 8px 16px; /* Increased padding for action buttons */
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+      font-size: 1em;
+  }
+
+  td a:first-of-type {
+      background-color: #28a745; /* Update button */
+  }
+
+  td a:first-of-type:hover {
+      background-color: #218838;
+  }
+
+  td a:last-of-type {
+      background-color: #dc3545; /* Delete button */
+  }
+
+  td a:last-of-type:hover {
+      background-color: #c82333;
+  }
+
+  /* Empty Table Message */
+  td[colspan="6"] {
+      text-align: center;
+      font-style: italic;
+      color: #666;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+      table {
+          font-size: 0.9em;
+      }
+
+      td, th {
+          padding: 10px;
+      }
+  }
+</style>
+
+<h2>Events in Category: {{ category.name }}</h2>
+
+<!-- Link to add a new event -->
+<a href="{% url 'events:create_event' %}">Add Event</a>
+
+<!-- Event Table -->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Organizers</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+      <tr>
+        <td>{{ event.name }}</td>
+        <td>{{ event.description }}</td>
+        <td>{{ event.start_date }}</td>
+        <td>{{ event.end_date }}</td>
+        <td>
+          {% if event.organizers %}
+            {{ event.organizers }}
+          {% else %}
+            No organizers assigned
+          {% endif %}
+        </td>
+        <td>
+          <!-- Link to update the event -->
+          <a href="{% url 'events:update_event' event.id %}">Update</a>
+          |
+          <!-- Link to delete the event -->
+          <!-- <a href="{% url 'events:delete_event' event.id %}" onclick="return confirm('Are you sure?');">Delete</a> -->
+          <a href="#" onclick="document.getElementById('delete-form-{{ event.id }}').submit();">Delete</a>
+
+         <form id="delete-form-{{ event.id }}" method="POST" action="{% url 'events:delete_event' event.id %}" style="display: none;">
+           {% csrf_token %}
+       </form>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="6">No events found in this category.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

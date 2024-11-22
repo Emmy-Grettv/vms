@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sign Up</title>
+
+    <!-- Link to the external static CSS file -->
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+
+    <!-- Optional Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="l">
+        <h1>Signup</h1>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <!-- First Name -->
+            <label for="name">First Name:</label>
+            <input type="text" name="name" id="name" placeholder="First Name" required>
+
+            <!-- Last Name -->
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
+
+            <!-- Username -->
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+
+            <!-- Password -->
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Password" value="Hello123!" required>
+
+            <!-- Confirm Password -->
+            <label for="password2">Confirm Password:</label>
+            <input type="password" name="password2" id="password2" placeholder="Confirm Password" value="Hello123!" required>
+
+            <!-- User Type -->
+            <label for="userType">User Type:</label>
+            <select name="userType" id="userType" required>
+                <option value="1">Volunteer</option>
+                <option value="2">Organizer</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit">Sign Up</button>
+
+            <!-- Login Link -->
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+  </body>
+</html>

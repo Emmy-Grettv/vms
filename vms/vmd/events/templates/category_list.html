@@ -1,0 +1,122 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Category Page Container */
+    .category-page {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-page h2 {
+        text-align: center;
+        color: #007BFF;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    /* Button Styles */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px 0;
+        text-decoration: none;
+        color: white;
+        background-color: #007BFF;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    /* Category List Styling */
+    .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .category-item {
+        background-color: #f0f8ff;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .category-item:hover {
+        background-color: #e6f7ff;
+    }
+
+    /* Category Link */
+    .category-link {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .category-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Delete Link */
+    .delete-link {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .delete-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .category-page {
+            padding: 15px;
+        }
+
+        .category-page h2 {
+            font-size: 1.5em;
+        }
+    }
+  </style>
+
+  <div class="category-page">
+    <h2>Categories</h2>
+  
+    <a href="{% url 'events:create_category' %}" class="btn btn-primary">Create New Category</a>
+  
+    <ul class="category-list">
+      {% for category in categories %}
+        <li class="category-item">
+          <a href="{% url 'events:category_events' category.id %}" class="category-link">{{ category.name }}</a>
+          <a href="{% url 'events:delete_category' category.id %}" class="delete-link" onclick="return confirm('Are you sure?');">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

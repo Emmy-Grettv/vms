@@ -1,0 +1,82 @@
+/* General Page Styling */
+.category-page {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Category List Styling */
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.category-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.category-link {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007BFF;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #e8f0ff;
+    transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+    background-color: #cce4ff;
+    text-decoration: underline;
+}
+
+/* Delete Button Styling */
+.delete-link {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF4D4D;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-link:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+    text-decoration: none;
+}

@@ -1,0 +1,94 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Form Container */
+    .create-category-form {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Heading */
+    .create-category-heading {
+      text-align: center;
+      color: #007BFF;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    /* Labels */
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Input Fields */
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    /* Submit Button */
+    .form-submit-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Button Hover Effect */
+    .form-submit-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .create-category-form {
+        padding: 15px;
+      }
+
+      .create-category-heading {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+
+  <div class="create-category-form">
+    <h2 class="create-category-heading">Create Category</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="name" class="form-label">Category Name</label>
+      <input type="text" name="name" id="name" class="form-input" required>
+
+      <button type="submit" class="form-submit-button">Create Category</button>
+    </form>
+  </div>
+{% endblock %}
